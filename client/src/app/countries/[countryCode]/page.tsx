@@ -5,6 +5,8 @@ import { getCountryDetails } from '@/controllers';
 import Image from 'next/image';
 import styles from './page.module.css';
 import Link from 'next/link';
+import { PopulationChart } from '@/components';
+import Spiner from '@/components/Spiner/Spiner';
 
 export default function CountryDetails() {
      const { countryCode } = useParams() as { countryCode: string };
@@ -19,14 +21,8 @@ export default function CountryDetails() {
      }, [countryCode]);
 
      if (country.length === 0) {
-          return (
-               <div className={styles.page}>
-                    <h2>Loading...</h2>
-               </div>
-          );
+          return <Spiner />;
      }
-
-     console.log(country.borders);
 
      return (
           <div className={styles.page}>
@@ -40,17 +36,23 @@ export default function CountryDetails() {
                     />
                </section>
                <section>
-                    <h3 className={styles.countryName}>Border Countries</h3>
-                    {country?.borders?.map((borderCountry, index) => {
-                         return (
-                              <p key={index}>
-                                   <Link href={`/countries/${borderCountry.countryCode}`}>
-                                        {borderCountry.commonName} ({borderCountry.countryCode})
-                                   </Link>
-                              </p>
-                         );
-                    })}
+                    {country?.borders?.length > 0 && (
+                         <>
+                              <h3 className={styles.countryName}>Border Countries</h3>
+                              {country?.borders?.map((borderCountry, index) => {
+                                   return (
+                                        <p key={index}>
+                                             <Link href={`/countries/${borderCountry.countryCode}`}>
+                                                  {borderCountry.commonName} (
+                                                  {borderCountry.countryCode})
+                                             </Link>
+                                        </p>
+                                   );
+                              })}
+                         </>
+                    )}
                </section>
+               <PopulationChart populationData={country.populationCounts} />
           </div>
      );
 }
