@@ -18,11 +18,14 @@ export const getCountryFlag = async ({ id }: GetCountryFlagProps) => {
 
           const countriesArray = data.data;
 
-          const { flag } = countriesArray.find(
+          // in the endpoint GET_COUNTRY_FLAG are many countries missing
+          const country = countriesArray.find(
                (country: CountryProps) =>
                     country.iso2.toLocaleLowerCase() === id.toLocaleLowerCase() ||
                     country.iso3.toLocaleLowerCase() === id.toLocaleLowerCase(),
           );
+
+          const flag = country?.flag || '';
 
           return flag;
      } catch (error) {

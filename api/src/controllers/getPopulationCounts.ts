@@ -30,7 +30,7 @@ export const getPopulationCounts = async ({ commonName }: GetPopulationCountsPro
                     country.country.toLocaleLowerCase() === commonName.toLocaleLowerCase(),
           );
 
-          return populationCounts;
+          return populationCounts || [];
      } catch (error) {
           throw { message: 'Error getting country population', details: error };
      }
