@@ -9,9 +9,9 @@ export const getBorderCountriesList = async ({ id }: IDProp) => {
      try {
           const { data } = await axios.get(`${GET_BORDER_COUNTRIES_LIST}${id}`);
 
-          const borderCountries = data.borders;
+          const { commonName, borders } = data;
 
-          return borderCountries;
+          return { commonName, borders };
      } catch (error) {
           throw { message: 'Error getting country border countries', details: error };
      }

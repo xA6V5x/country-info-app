@@ -2,7 +2,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
 
-type GetBorderCountriesListProps = { id: string };
+type GetPopulationCountsProps = { commonName: string };
 
 type PopulationCount = {
      year: number;
@@ -18,15 +18,16 @@ type CountryProps = {
 
 const GET_POPULATION_COUNTS = process.env.GET_POPULATION_COUNTS || '';
 
-export const getPopulationCounts = async ({ id }: GetBorderCountriesListProps) => {
+export const getPopulationCounts = async ({ commonName }: GetPopulationCountsProps) => {
      try {
           const { data } = await axios.get(GET_POPULATION_COUNTS);
 
           const countriesArray = data.data;
 
+          // all countries in "population" have a 3-letter code and AvailableCountries only gives me 2-letter codes, so here I have to use the name to compare
           const { populationCounts } = countriesArray.find(
                (country: CountryProps) =>
-                    country.code.toLocaleLowerCase() === id.toLocaleLowerCase(),
+                    country.country.toLocaleLowerCase() === commonName.toLocaleLowerCase(),
           );
 
           return populationCounts;

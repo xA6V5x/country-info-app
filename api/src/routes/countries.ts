@@ -20,7 +20,7 @@ router.get('/', async (req: Request, res: Response) => {
      }
 });
 
-// response with detailed information about a specific country {List of Border Countries, Population Data, Flag URL}
+// response with detailed information about a specific country {Name, List of Border Countries, Population Data, Flag URL}
 router.get('/:id', async (req: Request, res: Response) => {
      // id is the country code
      const { id } = req.params as { id: string };
