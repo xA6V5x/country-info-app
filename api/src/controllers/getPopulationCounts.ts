@@ -25,12 +25,14 @@ export const getPopulationCounts = async ({ commonName }: GetPopulationCountsPro
           const countriesArray = data.data;
 
           // all countries in "population" have a 3-letter code and AvailableCountries only gives me 2-letter codes, so here I have to use the name to compare
-          const { populationCounts } = countriesArray.find(
+          const country = countriesArray.find(
                (country: CountryProps) =>
                     country.country.toLocaleLowerCase() === commonName.toLocaleLowerCase(),
           );
 
-          return populationCounts || [];
+          const populationCounts = country?.populationCounts || [];
+
+          return populationCounts;
      } catch (error) {
           throw { message: 'Error getting country population', details: error };
      }
