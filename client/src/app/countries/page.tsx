@@ -16,7 +16,7 @@ export default function Countries() {
      useEffect(() => {
           (async () => {
                const availablesCountries = await getAvailableCountries();
-               setCountries(availablesCountries);
+               availablesCountries && setCountries(availablesCountries);
           })();
      }, []);
 

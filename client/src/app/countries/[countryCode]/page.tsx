@@ -32,7 +32,7 @@ export default function CountryDetails() {
      useEffect(() => {
           (async () => {
                const availablesCountries = await getCountryDetails({ id: countryCode });
-               setCountry(availablesCountries);
+               availablesCountries && setCountry(availablesCountries);
           })();
      }, [countryCode]);
 
