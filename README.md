@@ -1,12 +1,12 @@
-## Country Info Application
+# Country Info Application
 
-# Overview
+## Overview
 
 This project provides an API and frontend application to retrieve and display country information, including names, flags, border countries, and population data over time.
 
-## Getting Started
+# Getting Started
 
-# Backend Setup
+## Backend Setup
 
 Navigate to the API Directory, Open your terminal and run:
 
@@ -30,7 +30,7 @@ You should see:
 Server listening on port http://localhost:3001/
 ```
 
-# API Endpoints:
+## API Endpoints:
 
 Access the home route:
 
