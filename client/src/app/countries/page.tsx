@@ -5,6 +5,11 @@ import Link from 'next/link';
 import styles from './page.module.css';
 import Spiner from '@/components/Spiner/Spiner';
 
+interface Country {
+     name: string;
+     countryCode: string;
+}
+
 export default function Countries() {
      const [countries, setCountries] = useState([]);
 
@@ -22,7 +27,7 @@ export default function Countries() {
      return (
           <div className={styles.page}>
                <h2>Select a Country</h2>
-               {countries.map((country, index) => {
+               {countries.map((country: Country, index) => {
                     return (
                          <p key={index}>
                               <Link href={`/countries/${country.countryCode}`}>

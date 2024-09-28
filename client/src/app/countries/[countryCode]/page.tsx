@@ -8,10 +8,26 @@ import Link from 'next/link';
 import { PopulationChart } from '@/components';
 import Spiner from '@/components/Spiner/Spiner';
 
+interface PopulationCounts {
+     year: number;
+     value: number;
+}
+interface BorderCountry {
+     commonName: string;
+     countryCode: string;
+}
+
+interface Country {
+     commonName: string;
+     flag: string;
+     borders: BorderCountry[];
+     populationCounts: PopulationCounts[];
+}
+
 export default function CountryDetails() {
      const { countryCode } = useParams() as { countryCode: string };
 
-     const [country, setCountry] = useState([]);
+     const [country, setCountry] = useState<Country | null>(null);
 
      useEffect(() => {
           (async () => {
@@ -20,7 +36,7 @@ export default function CountryDetails() {
           })();
      }, [countryCode]);
 
-     if (country.length === 0) {
+     if (!country) {
           return <Spiner />;
      }
 
@@ -39,7 +55,7 @@ export default function CountryDetails() {
                     {country?.borders?.length > 0 && (
                          <>
                               <h3 className={styles.countryName}>Border Countries</h3>
-                              {country?.borders?.map((borderCountry, index) => {
+                              {country?.borders?.map((borderCountry: BorderCountry, index) => {
                                    return (
                                         <p key={index}>
                                              <Link href={`/countries/${borderCountry.countryCode}`}>
