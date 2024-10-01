@@ -1,0 +1,1 @@
+export const GET_AVAILABLE_COUNTRIES = process.env.GET_AVAILABLE_COUNTRIES;

@@ -5,8 +5,7 @@ import { getCountryDetails } from '@/controllers';
 import Image from 'next/image';
 import styles from './page.module.css';
 import Link from 'next/link';
-import { PopulationChart } from '@/components';
-import Spiner from '@/components/Spiner/Spiner';
+import { PopulationChart, Spiner } from '@/components';
 
 interface PopulationCounts {
      year: number;

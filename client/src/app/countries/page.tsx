@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { getAvailableCountries } from '@/controllers';
 import Link from 'next/link';
 import styles from './page.module.css';
-import Spiner from '@/components/Spiner/Spiner';
+import { Spiner } from '@/components';
 
 interface Country {
      name: string;
